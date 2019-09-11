@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+                    {% for a in context %}
+                    <form class="form-container editprofile-form" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <a href="{{a.Image}}">
+                            <img src="{{ a.Image }}" class="img-fluid img-thumbnail rounded-circle">
+                            </a>
+                            <input type="file" name="user-profile" id="open-file" style="display: none">
+                            <a href="#" onclick="$('#open-file').trigger('click');">
+                            <i id="user-image" class="img-fluid fas fa-camera fa-2x rounded float-right img-camera" data-toggle="tooltip" data-placement="left" title="choose photo to upload"></i>
+                            </a>
+        
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" name="username" value="{{ a.Username }}" class="form-control text-box" required>
+                        </div>
+                        <div class="form-group">
+                            <label for= "password">Password</label>
+                            <input type="text" name="password" value="{{ a.Password }}" class="form-control text-box" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="number">Number</label>
+                            <input type="number" name="number" value="{{ a.Number }}" class="form-control text-box" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mail">Email</label>
+                            <input type="email" name="mail" value="{{ a.Email }}" class="form-control text-box" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">save</button>
+                    </form>
+                    {% endfor %}
+{% endblock %}

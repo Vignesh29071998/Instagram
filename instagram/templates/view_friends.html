@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if context %}
+{% for a in context %}
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-secondary">{{ a.Friend_name }}
+            <span class="close">
+                <a href={% url 'unfollow' friend_name=a.Friend_name %} class="btn btn-outline btn-success float-right">
+                    UNFOLLOW
+                </a>
+            </span>
+        </li>
+    </ul>
+{% endfor %}
+{% else %}
+    <li class="list-group-item">
+        No Friends to show...
+    </li>
+{% endif %}
+{% endblock %}

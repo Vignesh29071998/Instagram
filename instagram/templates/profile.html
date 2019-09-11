@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% for a in context %}
+    <form enctype="multipart/form-data">
+        <div class="card text-center" style="width: 18rem;">
+            <img src="{{ a.Image }}" class="card-img-top img-fluid" alt="">
+            <div class="card-body">
+                <h1 class="card-title" style="font-family: cursive">{{ a.Username }}</h1>
+                <div class="card-text">
+                    <p>{{ a.Number }}</p>
+                    <p>{{ a.Email }}</p>
+                </div>
+            </div>
+        </div>
+    </form>
+    {% endfor %}
+    <a href="editprofile">
+        <i class="fas fa-user-edit"></i>&nbsp;
+        Edit Profile
+    </a><br>
+    <a href="view_friends">
+        <i class="fas fa-users"></i>&nbsp;
+        Friends
+    </a>
+{% endblock%}

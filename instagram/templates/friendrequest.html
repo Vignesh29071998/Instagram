@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if context %}
+    {% for a in context %}
+        <ul class="list-group">
+                <li id="close" class="list-group-item list-group-item-info">
+                    <a href={% url 'user_view' username=a.Friend.Username %}>{{ a.Friend.Username }}</a>
+                    <span class="close">
+                    <a href={% url 'reject' username=a.Friend.Username %} class="btn btn-secondary float-right">REJECT</a>
+                    <a href={% url 'add' username=a.Friend.Username %} class="btn btn-primary float-right" style="margin-right: 10px;">ADD</a>
+                    </span>
+                </li>
+        </ul>
+    {% endfor %}
+{% else %}
+        <li class="list-group-item list-group-item-success">
+            No Friend request...
+        </li>
+{% endif %}
+{% endblock %}

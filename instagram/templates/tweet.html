@@ -1,0 +1,11 @@
+{% extends 'base.html'%}
+{% block content %}
+    <form class="form-container" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Add tweet</label>
+            <textarea class="form-control" rows="5" name="tweet"></textarea> 
+            <input type="submit" value="UPLOAD" name="upload">
+        </div>
+    </form>
+{% endblock %}

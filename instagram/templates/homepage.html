@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% for post in context %}
+    {% csrf_token %}
+        <article class="media content-section">
+                <div class="media-body">
+                        <div class="article-metadata text-center">
+                            <img src="{{ post.Profile }}" class="img-size img-fluid rounded-circle">
+                            <h1 style="font-family: Georgia, 'Times New Roman', Times, serif;font-size: large;">{{ post.User }}</h1>
+                            <i class="img-fluid fas fa-thumbs-up fa-2x "></i>&nbsp;&nbsp;&nbsp;&nbsp;<i class="img-fluid far fa-comment fa-2x"></i>
+                        </div>
+                        {% if post.Posts_image %}
+                        <img src="{{ post.Posts_image }}" class="img-fluid">
+                        {% elif post.Posts_video %}
+                        <div class="embed-responsive embed-responsive-4by3">
+                        <video class="video-fluid" controls>
+                            <source src="{{ post.Posts_video }}" type="video/mp4">
+                        </video>
+                        </div>
+                        {% elif post.Tweet %}
+                        <p class="article-content">{{ post.Tweet }}</p>
+                        {% endif %}
+                    </div>
+        </article>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <form class="form-container" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        <input type="file" name="posts_video" id="open-file" style="display: none" onchange="upload_video(this)">
+        <a href="#" onclick="$('#open-file').trigger('click');">
+            <div class="text-center">
+                <i class="fas fa-video fa-2x rounded"></i>
+            </div>
+        </a>
+        <div class="embed-responsive embed-responsive-4by3">
+            <video class="video-fluid" id="video" controls>
+                <source src='' type="video/mp4">
+            </video>
+        </div>
+        <input type="submit" class="btn btn-primary btn-block" value="upload">
+    </form>
+    <script type="text/javascript">
+        function upload_video(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#video').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+{% endblock %}

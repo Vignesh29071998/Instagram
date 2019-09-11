@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+                            {% for a in context %}
+                            <form enctype="multipart/form-data">
+                                <div class="card text-center" style="width: 18rem;">
+                                    <img src="{{a.Image.url}}" class="card-img-top img-fluid">
+                                    <div class="card-body">
+                                        <label class="card-title" style="font-family: cursive;font-weight: bolder;font-size: 20px;">{{ a.Username }}&nbsp;&nbsp;
+                                            {% if view %}
+                                            <a href="sentrequest">
+                                            <i class="fas fa-user-plus user-plus"></i>
+                                            </a>
+                                            {% endif %}
+                                        </label>
+                                        <div class="card-text">
+                                            <p>{{ a.Number }}</p>
+                                            <p>{{ a.Email }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            {% endfor %}
+                            <div>
+                                {% if messages %}
+                                    {% for message in messages %}
+                                            {{ message }}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+{% endblock %}

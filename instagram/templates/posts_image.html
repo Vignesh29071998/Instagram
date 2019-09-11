@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <form  class="form-container" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        <input type="file" name="posts_image" id="open-file" style="display:none" onchange="upload_img(this)">
+        <a href="#" data-toggle="tooltip" title="Choose photo" onclick="$('#open-file').trigger('click');">
+            <div class="text-center">
+            <i class="fas fa-camera-retro fa-2x rounded"></i>
+            </div>
+        </a>
+        <img class="img-fluid" src="" id="img_id">
+        <input type="submit" class="btn btn-primary btn-block" value="upload">
+    </form>
+    <script type="text/javascript">
+        function upload_img(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#img_id').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+{% endblock %}
